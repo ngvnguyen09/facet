@@ -1,5 +1,5 @@
 {
-  "name": "livekit-meet",
+  "name": "facet-meet",
   "version": "0.2.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "next": "15.5.21",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-draggable": "^4.7.1",
     "react-hot-toast": "^2.5.2",
     "tinykeys": "^3.0.0"
   },

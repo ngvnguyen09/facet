@@ -6,11 +6,11 @@ import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: {
-    default: 'LiveKit Meet | Conference app build with LiveKit open source',
+    default: 'Facet Meet | 1-on-1 Video Calling',
     template: '%s',
   },
   description:
-    'LiveKit is an open source WebRTC project that gives you everything needed to build scalable and real-time audio and/or video experiences in your applications.',
+    'Facet Meet is a self-hosted 1-on-1 video calling application.',
   twitter: {
     creator: '@livekitted',
     site: '@livekitted',
@@ -26,20 +26,18 @@ export const metadata: Metadata = {
         type: 'image/png',
       },
     ],
-    siteName: 'LiveKit Meet',
+    siteName: 'Facet Meet',
   },
   icons: {
     icon: {
       rel: 'icon',
-      url: '/favicon.ico',
+      url: '/facet_logo_rvbg.png',
     },
     apple: [
       {
         rel: 'apple-touch-icon',
-        url: '/images/livekit-apple-touch.png',
-        sizes: '180x180',
+        url: '/facet_logo_rvbg.png',
       },
-      { rel: 'mask-icon', url: '/images/livekit-safari-pinned-tab.svg', color: '#070707' },
     ],
   },
 };
