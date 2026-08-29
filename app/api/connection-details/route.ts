@@ -8,9 +8,9 @@ const COOKIE_KEY = 'random-participant-postfix';
 
 export async function GET(request: NextRequest) {
   try {
-    const API_KEY = process.env.LIVEKIT_API_KEY;
-    const API_SECRET = process.env.LIVEKIT_API_SECRET;
-    const LIVEKIT_URL = process.env.LIVEKIT_URL;
+    const API_KEY = "API3XxQuAVkxBbo";
+    const API_SECRET = "he3SYucgdqqO1DerNDJfxxSNfDNCf1PjJNxCFBfKRl9L";
+    const LIVEKIT_URL = "wss://livekit.lemigo.xyz";
 
     // Parse query parameters
     const roomName = request.nextUrl.searchParams.get('roomName');

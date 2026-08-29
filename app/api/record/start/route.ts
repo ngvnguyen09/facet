@@ -16,10 +16,10 @@ export async function GET(req: NextRequest) {
       return new NextResponse('Missing roomName parameter', { status: 403 });
     }
 
+    const LIVEKIT_API_KEY = "API3XxQuAVkxBbo";
+    const LIVEKIT_API_SECRET = "he3SYucgdqqO1DerNDJfxxSNfDNCf1PjJNxCFBfKRl9L";
+    const LIVEKIT_URL = "wss://livekit.lemigo.xyz";
     const {
-      LIVEKIT_API_KEY,
-      LIVEKIT_API_SECRET,
-      LIVEKIT_URL,
       S3_KEY_ID,
       S3_KEY_SECRET,
       S3_BUCKET,
