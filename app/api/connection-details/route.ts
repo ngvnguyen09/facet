@@ -4,22 +4,24 @@ import { ConnectionDetails } from '@/lib/types';
 import { AccessToken, AccessTokenOptions, VideoGrant } from 'livekit-server-sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_KEY = process.env.LIVEKIT_API_KEY;
-const API_SECRET = process.env.LIVEKIT_API_SECRET;
-const LIVEKIT_URL = process.env.LIVEKIT_URL;
-
 const COOKIE_KEY = 'random-participant-postfix';
 
 export async function GET(request: NextRequest) {
   try {
+    const API_KEY = process.env.LIVEKIT_API_KEY;
+    const API_SECRET = process.env.LIVEKIT_API_SECRET;
+    const LIVEKIT_URL = process.env.LIVEKIT_URL;
+
     // Parse query parameters
     const roomName = request.nextUrl.searchParams.get('roomName');
     const participantName = request.nextUrl.searchParams.get('participantName');
     const metadata = request.nextUrl.searchParams.get('metadata') ?? '';
     const region = request.nextUrl.searchParams.get('region');
-    if (!LIVEKIT_URL) {
-      throw new Error('LIVEKIT_URL is not defined');
+    
+    if (!LIVEKIT_URL || !API_KEY || !API_SECRET) {
+      throw new Error('LIVEKIT_URL, LIVEKIT_API_KEY, or LIVEKIT_API_SECRET is not defined');
     }
+    
     const livekitServerUrl = region ? getLiveKitURL(LIVEKIT_URL, region) : LIVEKIT_URL;
     let randomParticipantPostfix = request.cookies.get(COOKIE_KEY)?.value;
     if (livekitServerUrl === undefined) {
@@ -44,6 +46,8 @@ export async function GET(request: NextRequest) {
         metadata,
       },
       roomName,
+      API_KEY,
+      API_SECRET,
     );
 
     // Return connection details
@@ -66,8 +70,8 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function createParticipantToken(userInfo: AccessTokenOptions, roomName: string) {
-  const at = new AccessToken(API_KEY, API_SECRET, userInfo);
+function createParticipantToken(userInfo: AccessTokenOptions, roomName: string, apiKey: string, apiSecret: string) {
+  const at = new AccessToken(apiKey, apiSecret, userInfo);
   at.ttl = '5m';
   const grant: VideoGrant = {
     room: roomName,
