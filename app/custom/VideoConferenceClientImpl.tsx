@@ -13,8 +13,10 @@ import {
 import { DebugMode } from '@/lib/Debug';
 import { useEffect, useMemo, useState } from 'react';
 import { KeyboardShortcuts } from '@/lib/KeyboardShortcuts';
-import { SettingsMenu } from '@/lib/SettingsMenu';
+import dynamic from 'next/dynamic';
 import { useSetupE2EE } from '@/lib/useSetupE2EE';
+
+const SettingsMenu = dynamic(() => import('@/lib/SettingsMenu').then(m => m.SettingsMenu), { ssr: false });
 import { useLowCPUOptimizer } from '@/lib/usePerfomanceOptimiser';
 
 export function VideoConferenceClientImpl(props: {

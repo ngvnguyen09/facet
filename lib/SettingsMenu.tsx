@@ -9,8 +9,10 @@ import {
   useIsRecording,
 } from '@livekit/components-react';
 import styles from '../styles/SettingsMenu.module.css';
-import { CameraSettings } from './CameraSettings';
-import { MicrophoneSettings } from './MicrophoneSettings';
+import dynamic from 'next/dynamic';
+
+const CameraSettings = dynamic(() => import('./CameraSettings').then(m => m.CameraSettings), { ssr: false });
+const MicrophoneSettings = dynamic(() => import('./MicrophoneSettings').then(m => m.MicrophoneSettings), { ssr: false });
 /**
  * @alpha
  */
